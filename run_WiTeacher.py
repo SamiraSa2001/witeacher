@@ -18,7 +18,7 @@ def parameters():
         'checkpoint_epochs': 100,
 
         # Data
-        'dataset': 'SignFi',#or DeepSeg
+        'dataset': 'signfi200x30new',#or DeepSeg
         'train_subdir': 'train',
         'eval_subdir': 'test',
 
@@ -71,12 +71,15 @@ def run(title, base_batch_size, base_labeled_batch_size, base_lr, n_labels, data
         'labels': './data-local/labels/signfi/00.txt',
     }
     context = RunContext(__file__, "{}_{}".format(n_labels, data_seed))
+    
     main.args = parse_dict_args(**adapted_args, **kwargs)
+    
     main.main(context)
 
 
 if __name__ == "__main__":
     for run_params in parameters():
+         
          run(**run_params)
 
 
