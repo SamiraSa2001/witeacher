@@ -69,6 +69,7 @@ class TFRecordDataset:
         self._cur_lod           = -1
 
         # List tfrecords files and inspect their shapes.
+        print(tfrecord_dir,"666666666666666666666666")
         assert os.path.isdir(self.tfrecord_dir)
         tfr_files = sorted(glob.glob(os.path.join(self.tfrecord_dir, '*.tfrecords')))
         assert len(tfr_files) >= 1
@@ -234,6 +235,7 @@ def load_dataset(class_name='training.dataset.TFRecordDataset', data_dir=None, v
     if verbose:
         print('Streaming data using %s...' % class_name)
     dataset = dnnlib.util.get_obj_by_name(class_name)(**adjusted_kwargs)
+    print(dataset,"9999999999999999999999")
     if verbose:
         print('Dataset shape =', np.int32(dataset.shape).tolist())
         print('Dynamic range =', dataset.dynamic_range)

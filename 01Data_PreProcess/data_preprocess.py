@@ -134,9 +134,9 @@ if __name__ == '__main__':
     deepSeg_data_path = ["csi_leave2_test", "csi_leave2_train"]
     deepSeg_label_path = ["label_leave2_test", "label_leave2_train"]
     is_test = [True, False]
-    for i in range():
+    #for i in range(len(deepSeg_data_path)):
         # number = deepSeg_data2png("leave_user2", deepSeg_data_path[i], deepSeg_label_path[i], is_test[i], 1)
-        number = deepSeg_data2png("deepseg", deepSeg_data_path[i], deepSeg_label_path[i], is_test[i], 1)
+        #number = deepSeg_data2png("deepseg", deepSeg_data_path[i], deepSeg_label_path[i], is_test[i], 1)
     number = 0
 
     ## signfi data processing

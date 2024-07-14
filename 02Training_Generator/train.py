@@ -8,7 +8,7 @@
 
 import copy
 import dnnlib
-from dnnlib import EasyDict
+from dnnlib.util import EasyDict
 
 import config
 from metrics import metric_base
@@ -29,7 +29,8 @@ if 1:
     sched         = EasyDict()
     grid          = EasyDict(size='4k', layout='random')
     metrics       = [metric_base.fid50k]
-    submit_config = dnnlib.SubmitConfig()
+    import dnnlib.submission.submit as dnnlib1
+    submit_config = dnnlib1.SubmitConfig()
     tf_config     = {'rnd.np_random_seed': 1000}
 
 
@@ -181,7 +182,7 @@ def main():
     kwargs.submit_config.run_dir_root = dnnlib.submission.submit.get_template_from_path(config.result_dir)
     kwargs.submit_config.run_dir_ignore += config.run_dir_ignore
     kwargs.submit_config.run_desc = desc
-    dnnlib.submit_run(**kwargs)
+    dnnlib1.submit_run(**kwargs)
 
 #----------------------------------------------------------------------------
 

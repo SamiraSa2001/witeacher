@@ -235,17 +235,20 @@ def get_module_from_obj_name(obj_name: str) -> Tuple[types.ModuleType, str]:
 
 def get_obj_from_module(module: types.ModuleType, obj_name: str) -> Any:
     """遍历对象名称并返回最后一个（最右边）的python对象。"""
+    
     if obj_name == '':
         return module
     obj = module
     for part in obj_name.split("."):
         obj = getattr(obj, part)
+        
     return obj
 
 
 def get_obj_by_name(name: str) -> Any:
     """查找具有给定名称的python对象。"""
     module, obj_name = get_module_from_obj_name(name)
+    
     return get_obj_from_module(module, obj_name)
 
 
@@ -259,7 +262,9 @@ def call_func_by_name(*args, func_name: str = None, **kwargs) -> Any:
 
 def get_module_dir_by_obj_name(obj_name: str) -> str:
     """获取包含给定对象名称的模块的目录路径。"""
+    
     module, _ = get_module_from_obj_name(obj_name)
+    
     return os.path.dirname(inspect.getfile(module))
 
 
@@ -319,7 +324,7 @@ def copy_files_and_create_dirs(files: List[Tuple[str, str]]) -> None:
         # will create all intermediate-level directories
         if not os.path.exists(target_dir_name):
             os.makedirs(target_dir_name)
-
+       
         shutil.copyfile(file[0], file[1])
 
 

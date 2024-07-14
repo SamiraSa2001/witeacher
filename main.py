@@ -1,4 +1,4 @@
-import argparse as parser 
+import urllib.parse 
 
 from fastai.losses import LabelSmoothingCrossEntropy
 from fastai.vision import *
@@ -64,6 +64,7 @@ def main(context):
     ema_validation_log = context.create_train_log("ema_validation")
 
     dataset_config = datasets.__dict__[args.dataset]()
+    
     num_classes = dataset_config.pop('num_classes')
     train_loader, eval_loader, train_loader_gan = create_data_loaders(**dataset_config, args=args)
 

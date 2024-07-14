@@ -158,11 +158,14 @@ def training_loop(
     resume_time             = 0.0):     # 在训练开始时给定统计时间。影响报告。
 
     # 初始化dnnlib和TensorFlow。
-    ctx = dnnlib.RunContext(submit_config, train)
-    tflib.init_tf(tf_config)
+    import dnnlib.submission.run_context as dnnlib2
+    ctx = dnnlib2.RunContext(submit_config, train)
+    import dnnlib.tflib.tfutil as tflib1
+    tflib1.init_tf(tf_config)
 
     # 载入训练集。会把所有分辨率的数据都加载进来
     training_set = dataset.load_dataset(data_dir=config.data_dir, verbose=True, **dataset_args)
+    
 
     # 构建网络。如果指定了resume_run_id,则加其中的预训练模型，如果没有则从零开始训练。
     with tf.device('/gpu:0'):
